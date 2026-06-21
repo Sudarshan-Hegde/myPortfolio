@@ -29,14 +29,14 @@ const skillLogos = {
 
 const downloadCV = () => {
   const link = document.createElement('a');
-  link.href = '/ResumeSuper.pdf'; 
+  link.href = '/Sudarshan_Hegde-Resume.pdf'; 
   link.download = 'ResumeSuper.pdf'; 
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
 }
 const viewCV = () => {
-  window.open('/ResumeSuper.pdf', '_blank');
+  window.open('/Sudarshan_Hegde-Resume.pdf', '_blank');
 }
 
 const skills = Object.keys(skillLogos);
@@ -95,13 +95,13 @@ const Bio = () => {
           <div className="md:w-2/3 p-6">
             <h2 className="text-4xl font-bold text-gray-600 mb-4">Biography</h2>
             <p className="text-xl text-gray-100 mb-4">
-              I am Sudarshan Hegde, a Computer Science and Engineering undergraduate at Sambhram Institute of Technology, affiliated with Visvesvaraya Technological University, with a strong academic and practical inclination toward Machine Learning, Deep Learning, and Artificial Intelligence. My core strength lies in designing, implementing, and understanding intelligent systems that transform data into actionable insights. With a solid foundation in Python, C++, C, and Java, I am comfortable working across the full machine learning pipeline—from data preprocessing and feature engineering to model training, evaluation, and optimization. I am particularly driven by the challenge of building scalable, efficient, and explainable models that address real-world problems.
+              I am Sudarshan R. Hegde, a Computer Science and Engineering undergraduate at Sambhram Institute of Technology (VTU), graduating in 2026 with a CGPA of 9.1/10. With strong foundations in data structures, algorithms, and machine learning, I am proficient in C++, Java, Python, and modern web technologies. I am driven by a passion for applying AI and ML to solve real-world problems, and I thrive at the intersection of research, engineering, and product development.
             </p>
             <p className="text-xl text-gray-100 mb-4">
-              My primary technical focus is on machine learning model development and deep learning architectures, where I actively explore concepts such as supervised and unsupervised learning, neural networks, convolutional models, and performance evaluation techniques. I enjoy experimenting with algorithms, tuning hyperparameters, and analyzing model behavior to achieve meaningful improvements in accuracy and robustness. Alongside AI and ML, I have a growing interest in cybersecurity, especially in understanding how intelligent systems can enhance threat detection, anomaly identification, and secure computing. This interdisciplinary mindset allows me to approach problems holistically, combining theoretical knowledge with practical experimentation.
+              I have accumulated hands-on industry experience through multiple concurrent internships: contributing to decision-support tools for the electric power sector at Continuum Associates LLC, deploying AI models within cloud-native environments at SuprMentr Technologies, and building scalable applications through the full software development lifecycle at Heartiest Mind Technologies. I also serve as a Creative Team Member at the OSCode-SaIT Chapter, leading UI/UX design and open-source contributions for the developer community.
             </p>
             <p className="text-xl text-gray-100 mb-4">
-              In addition to my machine learning expertise, I possess strong web development skills using HTML, CSS, JavaScript, React, and Tailwind CSS, which enable me to build clean, intuitive, and responsive interfaces for data-driven applications. Developing a full-fledged portfolio project strengthened my understanding of frontend architecture, component-based design, and user-focused development. I am highly motivated to work on challenging projects, collaborate with diverse teams, and continuously refine my skills. With a commitment to lifelong learning and innovation, I aspire to contribute impactful solutions at the intersection of artificial intelligence, software engineering, and real-world problem-solving.
+              My research on Geo-Agri Analyst — an end-to-end deep learning pipeline combining Super-Resolution GANs and Deep Bayesian Active Learning for precision agriculture — was published in the International Journal of Scientific Development and Research (IJSDR, Feb 2026). The system achieves a fourfold resolution increase on Sentinel-2 imagery while reducing labeled data requirements by ~85%. Alongside my ML expertise, I hold certifications in Deep Learning (IIT Ropar / NPTEL), RPA, and Power BI, and I continuously seek to build impactful solutions at the frontier of artificial intelligence and software engineering.
             </p>
           </div>
         </div>
@@ -165,20 +165,127 @@ const Bio = () => {
             <p className="text-gray-300 mb-2 font-medium">Sambhram Institute Of Technology</p>
             <p className="text-gray-400 text-sm mb-3">Bangalore, Karnataka | 2022-2026</p>
             <p className="text-gray-300">
-              Pursuing Bachelor of Engineering in Computer Science with current CGPA of 8.9. Specializing in Object oriented Programming, cloud computing, and AI technologies.
+              Pursuing Bachelor of Engineering in Computer Science with a CGPA of 9.1/10. Specializing in data structures, algorithms, machine learning, and cloud computing.
             </p>
             <div className="mt-4 flex items-center gap-3">
               <span className="px-2 py-1 text-xs bg-blue-900/50 text-blue-300 rounded-full">VTU</span>
-              <span className="px-2 py-1 text-xs bg-purple-900/50 text-purple-300 rounded-full">8.9 CGPA</span>
+              <span className="px-2 py-1 text-xs bg-purple-900/50 text-purple-300 rounded-full">9.1 CGPA</span>
               <span className="px-2 py-1 text-xs bg-green-900/50 text-green-300 rounded-full">Ongoing</span>
             </div>
           </div>
         </div>
       </div>
+      <WorkExperienceSection />
       <TechStackSection />
     </>
   );
 };
+
+function WorkExperienceSection() {
+  const experiences = [
+    {
+      role: "Product Development Intern",
+      company: "Continuum Associates LLC",
+      location: "Remote / India",
+      period: "Jan 2026 – Present",
+      color: "blue",
+      badge: "Current",
+      badgeColor: "bg-blue-900/50 text-blue-300",
+      borderHover: "hover:border-blue-400",
+      dotColor: "bg-blue-400",
+      lineColor: "bg-blue-400/30",
+      description:
+        "Contributing to internal technology products and decision-support tools for clients in the electric power and energy sector. Translating quantitative analysis and planning studies into robust software features, ensuring alignment with ISO, RTO, and industry planning rules.",
+    },
+    {
+      role: "AI with Cloud Computing Intern",
+      company: "SuprMentr Technologies Pvt Ltd",
+      location: "India",
+      period: "Jan 2026 – May 2026",
+      color: "purple",
+      badge: "Internship",
+      badgeColor: "bg-purple-900/50 text-purple-300",
+      borderHover: "hover:border-purple-400",
+      dotColor: "bg-purple-400",
+      lineColor: "bg-purple-400/30",
+      description:
+        "Developed and deployed AI models within cloud-native environments, leveraging scalable infrastructure to optimize performance and cost-efficiency. Architected automated data pipelines and integrated machine learning services into cloud platforms.",
+    },
+    {
+      role: "Software Developer Intern",
+      company: "Heartiest Mind Technologies Pvt Ltd",
+      location: "India",
+      period: "Jan 2026 – Apr 2026",
+      color: "green",
+      badge: "Internship",
+      badgeColor: "bg-green-900/50 text-green-300",
+      borderHover: "hover:border-green-400",
+      dotColor: "bg-green-400",
+      lineColor: "bg-green-400/30",
+      description:
+        "Contributed to the full software development lifecycle — design, testing, and deployment of scalable applications. Collaborated with cross-functional teams in an Agile environment to build robust features and implement clean, efficient code.",
+    },
+    {
+      role: "Creative Team Member",
+      company: "OSCode – SaIT Chapter",
+      location: "Bangalore, Karnataka",
+      period: "Sept 2025 – May 2026",
+      color: "yellow",
+      badge: "Open Source",
+      badgeColor: "bg-yellow-900/50 text-yellow-300",
+      borderHover: "hover:border-yellow-400",
+      dotColor: "bg-yellow-400",
+      lineColor: "bg-yellow-400/30",
+      description:
+        "Led OSCode's visual strategy at the intersection of design and development. Responsibilities included UI/UX design, open-source codebase maintenance, and technical documentation to ensure a seamless developer community experience.",
+    },
+  ];
+
+  return (
+    <div className="bg-stone-900/50 px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-full md:px-24 lg:px-8 lg:py-20">
+      <div className="max-w-2xl mx-auto text-center mb-16">
+        <h2 className="text-3xl font-bold text-gray-600 mb-4">Work Experience</h2>
+        <div className="w-[200px] h-1 border-b-4 border-yellow-500 mx-auto rounded-3xl"></div>
+      </div>
+
+      <div className="relative max-w-3xl mx-auto">
+        {/* Vertical line */}
+        <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gray-700"></div>
+
+        <div className="space-y-10">
+          {experiences.map((exp, index) => (
+            <div key={index} className="relative flex gap-8">
+              {/* Dot on timeline */}
+              <div className="relative flex-shrink-0 flex flex-col items-center">
+                <div className={`w-4 h-4 rounded-full mt-1.5 z-10 ring-4 ring-stone-900 ${exp.dotColor}`}></div>
+              </div>
+
+              {/* Card */}
+              <div
+                className={`flex-1 bg-white/5 backdrop-blur-sm p-6 rounded-xl border border-gray-700 shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:bg-white/10 ${exp.borderHover}`}
+              >
+                <div className="flex flex-wrap items-start justify-between gap-2 mb-3">
+                  <div>
+                    <h3 className="text-lg font-bold text-white">{exp.role}</h3>
+                    <p className="text-gray-300 font-medium">{exp.company}</p>
+                    <p className="text-gray-500 text-sm">{exp.location}</p>
+                  </div>
+                  <div className="flex flex-col items-end gap-2">
+                    <span className={`px-3 py-1 text-xs rounded-full font-medium ${exp.badgeColor}`}>
+                      {exp.badge}
+                    </span>
+                    <span className="text-gray-400 text-sm whitespace-nowrap">{exp.period}</span>
+                  </div>
+                </div>
+                <p className="text-gray-300 text-sm leading-relaxed">{exp.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
 
 function TechStackSection() {
   // Group skills by category for better organization

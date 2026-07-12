@@ -1,3 +1,193 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ============================================================
+   Editorial design system — dark research-document theme
+   ============================================================ */
+:root {
+  --paper: #100f0d;        /* page background, near-black warm */
+  --panel: #16140f;        /* raised panel */
+  --panel-2: #1c1913;      /* figure inner panel */
+  --ink: #e9e4d8;          /* primary warm cream text */
+  --ink-dim: #a8a193;      /* secondary text */
+  --ink-faint: #736d5f;    /* tertiary / captions */
+  --line: #2b2820;         /* hairline borders */
+  --line-strong: #403b2f;  /* emphasized borders */
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--paper);
+  /* Fine graph-paper grid, inverted for dark theme */
+  background-image:
+    linear-gradient(to right, rgba(233, 228, 216, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(233, 228, 216, 0.045) 1px, transparent 1px);
+  background-size: 14px 14px;
+  color: var(--ink);
+}
+
+.font-display {
+  font-family: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+  font-weight: 400;
+}
+
+.font-mono-ed {
+  font-family: 'JetBrains Mono', ui-monospace, 'Courier New', monospace;
+}
+
+/* Small uppercase monospace metadata label */
+.mono-label {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--ink-dim);
+}
+
+/* Inverted highlight block — dark theme = cream on dark */
+.ed-highlight {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 0.05em 0.35em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+/* Bordered monospace chip */
+.ed-chip {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-dim);
+  border: 1px solid var(--line-strong);
+  padding: 0.35rem 0.75rem;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+.ed-chip:hover { color: var(--ink); border-color: var(--ink-dim); }
+.ed-chip--solid { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.ed-chip--solid:hover { color: var(--paper); }
+
+/* Monospace bordered button */
+.ed-btn {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink);
+  border: 1px solid var(--line-strong);
+  padding: 0.65rem 1.25rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s;
+  background: transparent;
+  cursor: pointer;
+}
+.ed-btn:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.ed-btn--solid { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.ed-btn--solid:hover { background: transparent; color: var(--ink); border-color: var(--ink); }
+
+/* Editorial form input — hairline underline style */
+.ed-input {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.875rem;
+  width: 100%;
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  padding: 0.85rem 1rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.ed-input::placeholder { color: var(--ink-faint); }
+.ed-input:focus { border-color: var(--ink-dim); }
+
+/* ============================================================
+   Log post reading content
+   ============================================================ */
+.log-content {
+  color: var(--ink);
+  font-family: Georgia, 'Times New Roman', serif;
+  line-height: 1.85;
+  font-size: 1.125rem;
+}
+.log-content h1 { font-family: 'Instrument Serif', Georgia, serif; font-size: 2.25rem; color: var(--ink); margin: 2.25rem 0 1rem; line-height: 1.15; }
+.log-content h2 { font-family: 'Instrument Serif', Georgia, serif; font-size: 1.75rem; color: var(--ink); margin: 2rem 0 0.75rem; line-height: 1.2; }
+.log-content h3 { font-family: 'Instrument Serif', Georgia, serif; font-size: 1.375rem; color: var(--ink); margin: 1.5rem 0 0.5rem; }
+.log-content p { margin-bottom: 1.35rem; }
+.log-content ul { list-style: none; padding-left: 1.5rem; margin-bottom: 1.35rem; }
+.log-content ul li::before { content: '—'; margin-left: -1.5rem; margin-right: 0.6rem; color: var(--ink-faint); }
+.log-content ol { list-style: decimal; padding-left: 1.5rem; margin-bottom: 1.35rem; }
+.log-content li { margin-bottom: 0.4rem; }
+.log-content a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+.log-content a:hover { color: var(--ink-dim); }
+.log-content strong { color: var(--ink); font-weight: 700; }
+.log-content em { font-style: italic; }
+.log-content code { background: var(--panel-2); color: var(--ink); font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; padding: 0.15rem 0.4rem; border: 1px solid var(--line); }
+.log-content pre { background: var(--panel); border: 1px solid var(--line); padding: 1.25rem; overflow-x: auto; margin-bottom: 1.35rem; }
+.log-content pre code { background: none; border: none; padding: 0; font-size: 0.85rem; color: var(--ink); }
+.log-content blockquote { border-left: 1px solid var(--ink-dim); padding-left: 1.25rem; color: var(--ink-dim); font-style: italic; margin: 1.75rem 0; }
+.log-content hr { border: none; border-top: 1px solid var(--line); margin: 2.5rem 0; }
+.log-content img { max-width: 100%; height: auto; border: 1px solid var(--line); margin: 1.75rem 0; }
+.log-content table { border-collapse: collapse; margin: 1.75rem 0; width: 100%; font-size: 0.95em; }
+.log-content th, .log-content td { border: 1px solid var(--line-strong); padding: 0.5rem 0.85rem; vertical-align: top; }
+.log-content th { background: var(--panel-2); font-weight: 700; text-align: left; }
+.log-content sub, .log-content sup { font-size: 0.72em; }
+.log-content .page-break {
+  border: none;
+  border-top: 1px dashed var(--line-strong);
+  margin: 2.5rem 0;
+  position: relative;
+  height: 0;
+}
+.log-content .page-break::after {
+  content: 'PAGE BREAK';
+  position: absolute;
+  top: -0.6em;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  color: var(--ink-faint);
+  background: var(--panel);
+  padding: 0 0.75rem;
+}
+@media print {
+  .log-content .page-break { border: none; page-break-after: always; }
+  .log-content .page-break::after { content: none; }
+}
+
+/* ============================================================
+   TipTap admin editor — writing surface reuses .log-content so
+   what you type matches how the entry publishes.
+   ============================================================ */
+.tiptap p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  color: var(--ink-faint);
+  pointer-events: none;
+  float: left;
+  height: 0;
+}
+
+/* Text selection inside the editor */
+.tiptap ::selection { background: var(--ink); color: var(--paper); }
+
+/* Table cell selection */
+.tiptap .selectedCell { position: relative; }
+.tiptap .selectedCell::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(233, 228, 216, 0.12);
+  pointer-events: none;
+}
+
+/* Editor scrollbar-friendly page area */
+.editor-page-scroll { overflow-x: auto; }

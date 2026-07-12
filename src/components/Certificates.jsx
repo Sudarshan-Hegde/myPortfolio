@@ -1,172 +1,163 @@
 import React, { useState } from "react";
+import { SectionHeading } from "./Bio";
 
 function Certificates() {
-  const [showModal, setShowModal] = useState(false);
   const [selectedCert, setSelectedCert] = useState(null);
 
   const certificates = [
     {
-      title: "Deep Learning - IIT Ropar",
+      title: "Deep Learning — IIT Ropar",
+      issuer: "NPTEL",
       description:
         "Completed the NPTEL Deep Learning course offered by IIT Ropar, gaining foundational and advanced knowledge in neural networks and deep learning techniques.",
       moreDescription:
         "This NPTEL course by IIT Ropar provided a strong foundation in deep learning, covering neural networks, perceptrons, activation functions, backpropagation, CNNs, RNNs, and generative models. The program balanced theory with hands-on practice using frameworks like TensorFlow and Keras. Through lectures and assignments, I learned to design, train, and evaluate deep learning models for tasks such as image classification and natural language processing, preparing me to apply deep learning to real-world AI problems.",
       imageSrc: `${import.meta.env.BASE_URL}deepLearning.jpeg`,
-      certLink: "https://www.example.com/your-certificate-link-1",
     },
     {
-      title: "OSCode Appointment Certificate ",
+      title: "OSCode Appointment Certificate",
+      issuer: "OSCODE COMMUNITY",
       description:
         "Appointed as a Creative Team Member at OSCode Community, bridging technical innovation with visual storytelling to empower the developer ecosystem.",
       moreDescription:
         "I officially joined the OSCode Community as a Creative Team Member, a role that sits at the intersection of technology and design. In this capacity, I am responsible for crafting the visual identity of our technical events, translating complex engineering concepts into accessible, engaging digital content. My journey with OSCode is driven by a commitment to continuous learning—leveraging my skills to build not just better software, but a stronger, more inclusive developer community.",
       imageSrc: `${import.meta.env.BASE_URL}certOSCode.jpg`,
-      certLink: "https://www.example.com/your-certificate-link-1",
     },
     {
-      title: "UI path - variables constants and arguments in studio",
+      title: "Variables, Constants & Arguments in Studio",
+      issuer: "UIPATH",
       description:
-        "In a world where automation is becoming increasingly important, this course provides a comprehensive introduction to the UiPath platform, covering everything from the basics of RPA to advanced automation techniques.",
+        "A comprehensive introduction to the UiPath platform, covering everything from the basics of RPA to advanced automation techniques.",
       moreDescription:
         "The course explores UiPath Studio, attended vs unattended bots, workflow automation, and practical examples that simulate real-world business processes. This helps build a solid foundation in RPA development.",
       imageSrc: `${import.meta.env.BASE_URL}cert-auto-01.jpg`,
-      certLink: "https://www.example.com/your-certificate-link-1",
     },
     {
-      title: "UI path - Introduction to Automation",
-      description: "A comprehensive introduction to the UiPath platform, covering everything from the basics of RPA to advanced automation techniques.",
+      title: "Introduction to Automation",
+      issuer: "UIPATH",
+      description:
+        "A comprehensive introduction to the UiPath platform, covering everything from the basics of RPA to advanced automation techniques.",
       moreDescription:
         "The course explores UiPath Studio, attended vs unattended bots, workflow automation, and practical examples that simulate real-world business processes. This helps build a solid foundation in RPA development.",
       imageSrc: `${import.meta.env.BASE_URL}cert-auto-02.jpg`,
-      certLink: "https://www.example.com/your-certificate-link-2",
     },
     {
-      title: "UI path - Build your first prosses",
-      description: "In a world where automation is becoming increasingly important, this course provides a comprehensive introduction to the UiPath platform, covering everything from the basics of RPA to advanced automation techniques.",
+      title: "Build Your First Process",
+      issuer: "UIPATH",
+      description:
+        "Hands-on introduction to building automation workflows in UiPath Studio, from process design to execution.",
       moreDescription:
         "The course explores UiPath Studio, attended vs unattended bots, workflow automation, and practical examples that simulate real-world business processes. This helps build a solid foundation in RPA development.",
       imageSrc: `${import.meta.env.BASE_URL}cert-auto-02.jpg`,
-      certLink: "https://www.example.com/your-certificate-link-2",
     },
-
     {
       title: "Robotic Process Automation (RPA)",
-      description: "In a world where automation is becoming increasingly important, this course provides a comprehensive introduction to the UiPath platform, covering everything from the basics of RPA to advanced automation techniques.",
+      issuer: "CERTIFICATION",
+      description:
+        "A comprehensive introduction to RPA, covering everything from the basics to advanced automation techniques.",
       moreDescription:
-        "the course explores UiPath Studio, attended vs unattended bots, workflow automation, and practical examples that simulate real-world business processes. This helps build a solid foundation in RPA development.",
+        "The course explores UiPath Studio, attended vs unattended bots, workflow automation, and practical examples that simulate real-world business processes. This helps build a solid foundation in RPA development.",
       imageSrc: `${import.meta.env.BASE_URL}cert004.jpg`,
-      certLink: "https://www.example.com/your-certificate-link-2",
     },
     {
-      title: "Power BI and Data Visualization Skill Development Program",
-      description: "A comprehensive intrductio to power BI, covering everything from the basics of data visualization to advanced analytics techniques.",
+      title: "Power BI & Data Visualization",
+      issuer: "SKILL DEVELOPMENT PROGRAM",
+      description:
+        "A comprehensive introduction to Power BI, covering everything from the basics of data visualization to advanced analytics techniques.",
       moreDescription:
         "The course explores Power BI Desktop, data modeling, DAX expressions, and practical examples that simulate real-world business scenarios. This helps build a solid foundation in data visualization and analytics.",
       imageSrc: `${import.meta.env.BASE_URL}cert005.jpg`,
-      certLink: "https://www.example.com/your-certificate-link-2",
     },
     {
-      title: "Data Analytics with Power BI Workshop",
-      description: "Data Analytics with Power BI Workshop is a hands-on training program designed to equip participants with the skills needed to analyze and visualize data effectively using Power BI.",
+      title: "Data Analytics with Power BI",
+      issuer: "WORKSHOP",
+      description:
+        "A hands-on training program designed to equip participants with the skills needed to analyze and visualize data effectively using Power BI.",
       moreDescription:
         "The workshop covers data modeling, DAX expressions, and practical examples that simulate real-world business scenarios. This helps build a solid foundation in data analytics and visualization.",
       imageSrc: `${import.meta.env.BASE_URL}cert006.jpg`,
-      certLink: "https://www.example.com/your-certificate-link-2",
     },
   ];
 
   const handleOpenModal = (cert) => {
     setSelectedCert(cert);
-    setShowModal(true);
     document.body.style.overflow = "hidden";
   };
 
   const handleCloseModal = () => {
-    setShowModal(false);
     setSelectedCert(null);
     document.body.style.overflow = "auto";
   };
 
   return (
-    <>
-      {/* Main Content */}
-      <div id="certificates" className="bg-stone-900/50 px-4 md:px-10">
-        <div className="flex justify-center  mb-4">
-            <p className="text-3xl font-bold text-gray-600">Certificates</p>
-        </div>
-        <div className="w-[200px] h-1 border-b-4 border-yellow-500 mx-auto mb-16 rounded-3xl"></div>
+    <section id="certificates" className="border-b border-[var(--line)]">
+      <div className="max-w-[104rem] mx-auto px-6 lg:px-10 py-20 lg:py-28">
+        <SectionHeading index="05" label="Certifications">
+          Credentials, <em>formally</em>
+          <br />
+          <em>on the record.</em>
+        </SectionHeading>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
+        <div className="border-t border-[var(--line)]">
           {certificates.map((cert, index) => (
-            <div
+            <button
               key={index}
               onClick={() => handleOpenModal(cert)}
-              className="mb-10 cursor-pointer max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-lg mx-auto"
+              className="w-full text-left grid grid-cols-[40px_1fr_auto] md:grid-cols-[60px_1fr_240px_100px] gap-4 md:gap-8 items-baseline py-6 border-b border-[var(--line)] group hover:bg-[var(--panel)] transition-colors md:px-4 md:-mx-4"
             >
-              <img className="rounded-t-lg w-full h-48 object-cover" src={cert.imageSrc} alt={cert.title} />
-              <div className="p-5">
-                <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">{cert.title}</h5>
-                <p className="mb-3 text-gray-700 dark:text-gray-400">{cert.description}</p>
-                <span className="inline-flex items-center px-3 py-2 text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 dark:bg-blue-600 dark:hover:bg-blue-700 transition-colors duration-300">
-                  View Certificate
-                  <svg
-                    className="rtl:rotate-180 w-3.5 h-3.5 ml-2"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 14 10"
-                  >
-                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
-                  </svg>
-                </span>
+              <span className="mono-label">{String(index + 1).padStart(2, '0')}</span>
+              <div>
+                <h3 className="font-display text-xl md:text-2xl text-[var(--ink)] leading-tight mb-1">
+                  {cert.title}
+                </h3>
+                <p className="mono-label md:hidden">{cert.issuer}</p>
               </div>
-            </div>
+              <p className="mono-label hidden md:block">{cert.issuer}</p>
+              <span className="mono-label md:text-right group-hover:text-[var(--ink)] transition-colors">
+                View →
+              </span>
+            </button>
           ))}
         </div>
       </div>
 
-      {/* Modal Overlay */}
-      {showModal && selectedCert && (
+      {/* Modal */}
+      {selectedCert && (
         <div
-          className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm transition-opacity"
           onClick={handleCloseModal}
-        ></div>
-      )}
-
-      {/* Modal Content */}
-      {showModal && selectedCert && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center"
-          onClick={handleCloseModal}
+          className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4"
         >
           <div
-            className="relative bg-white dark:bg-gray-800 rounded-xl shadow-xl max-w-4xl w-[90%] p-8 overflow-auto z-50"
             onClick={(e) => e.stopPropagation()}
+            className="bg-[var(--paper)] border border-[var(--line-strong)] max-w-3xl w-full max-h-[90vh] overflow-auto"
           >
-            {/* Yellow Windows 11-style Close Button */}
-            <button
-              onClick={handleCloseModal}
-              className=" cursor-pointer absolute top-4 right-4 w-6 h-6 rounded-full bg-yellow-400 hover:bg-yellow-300 shadow-md flex items-center justify-center text-black font-bold text-lg transition-colors"
-              title="Close"
-            >
-              &minus;
-            </button>
-
-            <img
-              src={selectedCert.imageSrc}
-              alt={selectedCert.title}
-              className="w-full max-h-[70vh] object-contain rounded-lg mb-4"
-            />
-
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-              {selectedCert.title}
-            </h2>
-            <p className="text-gray-700 dark:text-gray-300 mb-2">{selectedCert.description}</p>
-            <p className="text-gray-600 dark:text-gray-400">{selectedCert.moreDescription}</p>
+            <div className="flex items-center justify-between px-6 py-3 border-b border-[var(--line)] sticky top-0 bg-[var(--paper)]">
+              <span className="mono-label">{'//'} Certificate · {selectedCert.issuer}</span>
+              <button
+                onClick={handleCloseModal}
+                className="font-mono-ed text-xs text-[var(--ink-dim)] hover:text-[var(--ink)] transition-colors"
+              >
+                [ CLOSE ✕ ]
+              </button>
+            </div>
+            <div className="p-6 lg:p-10">
+              <img
+                src={selectedCert.imageSrc}
+                alt={selectedCert.title}
+                className="w-full max-h-[60vh] object-contain border border-[var(--line)] bg-[var(--panel)] mb-8"
+              />
+              <h2 className="font-display text-3xl text-[var(--ink)] mb-4">{selectedCert.title}</h2>
+              <p className="font-mono-ed text-[13px] leading-relaxed text-[var(--ink-dim)] mb-4">
+                {selectedCert.description}
+              </p>
+              <p className="font-mono-ed text-xs leading-relaxed text-[var(--ink-faint)]">
+                {selectedCert.moreDescription}
+              </p>
+            </div>
           </div>
         </div>
       )}
-    </>
+    </section>
   );
 }
 

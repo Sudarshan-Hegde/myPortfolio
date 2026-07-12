@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { SectionHeading } from "./Bio";
 
 function Project() {
   const [selectedProject, setSelectedProject] = useState(null);
@@ -6,6 +7,8 @@ function Project() {
   const projects = [
     {
       title: "Geo-Agri Analyst",
+      tag: "The Research",
+      stack: "PYTORCH · REACT · FASTAPI · GANS",
       description:
         "An End-to-End Decision Support System for Agriculture via Super-Resolution and Active Learning.",
       fullDescription:
@@ -13,7 +16,9 @@ function Project() {
       imageSrc: `${import.meta.env.BASE_URL}proj_img04.png`,
     },
     {
-      title: "Portfolio website using React and Tailwind CSS",
+      title: "Portfolio Website",
+      tag: "The Document",
+      stack: "REACT · TAILWIND CSS · FIREBASE",
       description:
         "A responsive portfolio website built using React and Tailwind CSS. The website showcases my skills, projects, and certifications.",
       fullDescription:
@@ -21,7 +26,9 @@ function Project() {
       imageSrc: `${import.meta.env.BASE_URL}proj_img01.png`,
     },
     {
-      title: "Object detection using TensorFlow",
+      title: "Object Detection",
+      tag: "The Vision",
+      stack: "TENSORFLOW · CNN · PYTHON",
       description:
         "A machine learning project that uses TensorFlow to detect objects in images.",
       fullDescription:
@@ -29,7 +36,9 @@ function Project() {
       imageSrc: `${import.meta.env.BASE_URL}proj_img02.png`,
     },
     {
-      title: "Unet-polyogon",
+      title: "UNet Polygon",
+      tag: "The Segmenter",
+      stack: "PYTORCH · UNET · KAGGLE",
       description:
         "UNet-based model to color polygons using shape and color inputs.",
       fullDescription:
@@ -49,70 +58,86 @@ function Project() {
   };
 
   return (
-    <div id="projects" className="relative px-0 md:px-10 bg-stone-900/50 ">
-        <div className="flex justify-center mb-4">
-            <p className="text-3xl font-bold text-gray-600">Projects</p>
-        </div>
-        <div className="w-[200px] h-1 border-b-4 border-yellow-500 mx-auto mb-16 rounded-3xl"></div>
-        <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8 ${selectedProject ? 'blur-sm pointer-events-none' : ''}`}>
-        {projects.map((project, index) => (
-          <div
-            key={index}
-            className="mb-10 cursor-pointer max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-lg mx-auto"
-            onClick={() => openModal(project)}
-          >
-            <img
-              className="rounded-t-lg w-full h-48 object-cover"
-              src={project.imageSrc}
-              alt={project.title}
-            />
-            <div className="p-5">
-              <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+    <section id="projects" className="border-b border-[var(--line)]">
+      <div className="max-w-[104rem] mx-auto px-6 lg:px-10 py-20 lg:py-28">
+        <SectionHeading index="04" label="Projects">
+          Ideas are cheap.
+          <br />
+          <em>Shipped work is not.</em>
+        </SectionHeading>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 border-t border-[var(--line)]">
+          {projects.map((project, index) => (
+            <article
+              key={index}
+              onClick={() => openModal(project)}
+              className={`cursor-pointer border-b lg:border-b-0 border-[var(--line)] py-10 lg:px-7 group hover:bg-[var(--panel)] transition-colors ${index > 0 ? 'lg:border-l' : ''} ${index === 0 ? 'lg:pl-0' : ''} ${index === 3 ? 'lg:pr-0' : ''} ${index % 2 === 1 ? 'sm:border-l lg:border-l' : ''} sm:px-6`}
+            >
+              <div className="flex items-baseline justify-between mb-8">
+                <span className="mono-label">0{index + 1}</span>
+                <span className="mono-label">{project.tag}</span>
+              </div>
+
+              <figure className="border border-[var(--line)] mb-6 overflow-hidden">
+                <img
+                  src={project.imageSrc}
+                  alt={project.title}
+                  className="w-full h-36 object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                />
+              </figure>
+
+              <h3 className="font-display text-2xl lg:text-[1.65rem] leading-tight text-[var(--ink)] mb-2">
                 {project.title}
-              </h5>
-              <p className="mb-3 text-gray-700 dark:text-gray-400">{project.description}</p>
-              <span className="inline-flex items-center px-3 py-2 text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 transition-colors duration-300">
-                Read more
-              </span>
-            </div>
-          </div>
-        ))}
+              </h3>
+              <p className="mono-label mb-4">{project.stack}</p>
+              <p className="font-mono-ed text-xs leading-relaxed text-[var(--ink-dim)] mb-8">
+                {project.description}
+              </p>
+              <p className="mono-label group-hover:text-[var(--ink)] transition-colors">
+                Read brief →
+              </p>
+            </article>
+          ))}
+        </div>
       </div>
 
-      {/* Modal */}
+      {/* Modal — document panel */}
       {selectedProject && (
         <div
           onClick={closeModal}
-          className="fixed inset-0 z-50 bg-black/40 backdrop-blur-md flex items-center justify-center"
+          className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4"
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl max-w-5xl w-full p-10 relative transition-transform duration-300"
+            className="bg-[var(--paper)] border border-[var(--line-strong)] max-w-3xl w-full max-h-[90vh] overflow-auto"
           >
-            {/*  yellow bubble */}
-            <button
-              onClick={closeModal}
-              className="cursor-pointer absolute top-4 right-4 w-6 h-6 rounded-full bg-yellow-400 hover:bg-yellow-300 shadow-md flex items-center justify-center text-black font-bold text-lg transition-colors"
-              title="Close"
-            >
-              &minus;
-            </button>
-
-            <img
-              src={selectedProject.imageSrc}
-              alt={selectedProject.title}
-              className="rounded-lg w-full h-auto mb-6"
-            />
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-              {selectedProject.title}
-            </h2>
-            <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed whitespace-pre-line">
-              {selectedProject.fullDescription}
-            </p>
+            <div className="flex items-center justify-between px-6 py-3 border-b border-[var(--line)] sticky top-0 bg-[var(--paper)]">
+              <span className="mono-label">{'//'} Project Brief · {selectedProject.tag}</span>
+              <button
+                onClick={closeModal}
+                className="font-mono-ed text-xs text-[var(--ink-dim)] hover:text-[var(--ink)] transition-colors"
+              >
+                [ CLOSE ✕ ]
+              </button>
+            </div>
+            <div className="p-6 lg:p-10">
+              <img
+                src={selectedProject.imageSrc}
+                alt={selectedProject.title}
+                className="w-full border border-[var(--line)] mb-8"
+              />
+              <h2 className="font-display text-4xl text-[var(--ink)] mb-2">
+                {selectedProject.title}
+              </h2>
+              <p className="mono-label mb-6">{selectedProject.stack}</p>
+              <p className="font-mono-ed text-[13px] leading-relaxed text-[var(--ink-dim)] whitespace-pre-line">
+                {selectedProject.fullDescription}
+              </p>
+            </div>
           </div>
         </div>
       )}
-    </div>
+    </section>
   );
 }
 

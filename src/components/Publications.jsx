@@ -1,258 +1,187 @@
 import React, { useState } from "react";
+import { SectionHeading } from "./Bio";
 
 function Publications() {
   const [showModal, setShowModal] = useState(false);
-  const [selectedCert, setSelectedCert] = useState(null);
-  const [cardImageIndex, setCardImageIndex] = useState({});
-  const [modalImageIndex, setModalImageIndex] = useState(0);
+  const [imageIndex, setImageIndex] = useState(0);
 
-  const certificates = [
-    {
-      title: "Geo-Agri Analyst: An End-to-End Decision Support System for Agriculture via Super-Resolution and Active Learning",
-      description:
-        "This research proposes an end-to-end framework that integrates RFB-ESRGAN for 4 X spatial resolution enhancement of multi-spectral imagery with a Deep Bayesian Active Learning loop to optimize data efficiency. By synergizing perceptual super-resolution and hybrid query strategies, the system achieves state-of-the-art classification accuracy while reducing expert annotation requirements by 85% on accessible cloud infrastructure.",
-      moreDescription:
-        "Abstract: In the contemporary era of digital agriculture, the ability to accurately classify and monitor land cover types has become paramount for ensuring food security, optimizing resource allocation, and conducting precise yield estimation. However, the coarse spatial resolution of public satellite data and the prohibitive expense of expert ground-truth annotation have frequently stifled the scalability of such systems in developing regions. To bridge this gap, we have proposed a comprehensive, end-to-end decision support system. This system has synergized a Perceptual Extreme Super-Resolution Network with Receptive Field Blocks (RFB-ESRGAN) and a label-efficient Deep Bayesian Active Learning strategy. 	We have proposed a Generative Adversarial Network enhanced with multi-scale Receptive Field Blocks. This has allowed us to infer and reconstruct latent high-frequency textures. Consequently, it has achieved a fourfold increase in the spatial resolution of multi-spectral imagery. To concurrently address data scarcity, we have employed a hybrid query strategy. This strategy has combined Distance-Based Sampling and Spatial-Spectral Entropy. It has iteratively identified and requested labels for only the most mathematically informative samples. We have validated this approach on accessible cloud infrastructure using the BigEarthNet archive. This approach has significantly enhanced classification accuracy for complex heterogeneous crop patterns. Furthermore, it has reduced labeled data requirements by approximately 85% compared to random sampling baselines. Thus, it has offered a robust pathway for democratizing precision agriculture analytics.",
-      images: [
-        `${import.meta.env.BASE_URL}research01.jpg`,
-        `${import.meta.env.BASE_URL}research02.jpg`,
-        `${import.meta.env.BASE_URL}research03.jpg`,
-      ],
-      certLink: "https://ijsdr.org/certificatemanager.php?a_rid=307202",
-      paperLink: "https://ijsdr.org/papers/IJSDR2602037.pdf",
-      confirmationLink: "https://ijsdr.org/confirmationlettermanager.php?a_rid=307202",
-    },
-  ];
-
-  const handleOpenModal = (cert) => {
-    setSelectedCert(cert);
-    setShowModal(true);
-    const currentIndex = cardImageIndex[certificates.indexOf(cert)] || 0;
-    setModalImageIndex(currentIndex);
-    document.body.style.overflow = "hidden";
+  const publication = {
+    title:
+      "Geo-Agri Analyst: An End-to-End Decision Support System for Agriculture via Super-Resolution and Active Learning",
+    journal: "INTERNATIONAL JOURNAL OF SCIENTIFIC DEVELOPMENT AND RESEARCH (IJSDR)",
+    volume: "VOL. 11 · ISSUE 2 · FEB 2026",
+    description:
+      "This research proposes an end-to-end framework that integrates RFB-ESRGAN for 4× spatial resolution enhancement of multi-spectral imagery with a Deep Bayesian Active Learning loop to optimize data efficiency. By synergizing perceptual super-resolution and hybrid query strategies, the system achieves state-of-the-art classification accuracy while reducing expert annotation requirements by 85% on accessible cloud infrastructure.",
+    moreDescription:
+      "Abstract: In the contemporary era of digital agriculture, the ability to accurately classify and monitor land cover types has become paramount for ensuring food security, optimizing resource allocation, and conducting precise yield estimation. However, the coarse spatial resolution of public satellite data and the prohibitive expense of expert ground-truth annotation have frequently stifled the scalability of such systems in developing regions. To bridge this gap, we have proposed a comprehensive, end-to-end decision support system. This system has synergized a Perceptual Extreme Super-Resolution Network with Receptive Field Blocks (RFB-ESRGAN) and a label-efficient Deep Bayesian Active Learning strategy. We have proposed a Generative Adversarial Network enhanced with multi-scale Receptive Field Blocks. This has allowed us to infer and reconstruct latent high-frequency textures. Consequently, it has achieved a fourfold increase in the spatial resolution of multi-spectral imagery. To concurrently address data scarcity, we have employed a hybrid query strategy. This strategy has combined Distance-Based Sampling and Spatial-Spectral Entropy. It has iteratively identified and requested labels for only the most mathematically informative samples. We have validated this approach on accessible cloud infrastructure using the BigEarthNet archive. This approach has significantly enhanced classification accuracy for complex heterogeneous crop patterns. Furthermore, it has reduced labeled data requirements by approximately 85% compared to random sampling baselines. Thus, it has offered a robust pathway for democratizing precision agriculture analytics.",
+    images: [
+      `${import.meta.env.BASE_URL}research01.jpg`,
+      `${import.meta.env.BASE_URL}research02.jpg`,
+      `${import.meta.env.BASE_URL}research03.jpg`,
+    ],
+    certLink: "https://ijsdr.org/certificatemanager.php?a_rid=307202",
+    paperLink: "https://ijsdr.org/papers/IJSDR2602037.pdf",
+    confirmationLink: "https://ijsdr.org/confirmationlettermanager.php?a_rid=307202",
   };
 
-  const handleCloseModal = () => {
+  const stats = [
+    ['4×', 'Resolution increase'],
+    ['85%', 'Fewer labels needed'],
+    ['+5.4%', 'Top-1 accuracy'],
+  ];
+
+  const openModal = () => {
+    setShowModal(true);
+    document.body.style.overflow = "hidden";
+  };
+  const closeModal = () => {
     setShowModal(false);
-    setSelectedCert(null);
-    setModalImageIndex(0);
     document.body.style.overflow = "auto";
   };
 
-  const handleCardNextImage = (certIndex, e) => {
-    e.stopPropagation();
-    const cert = certificates[certIndex];
-    setCardImageIndex(prev => ({
-      ...prev,
-      [certIndex]: ((prev[certIndex] || 0) + 1) % cert.images.length
-    }));
+  const nextImage = (e) => {
+    e?.stopPropagation();
+    setImageIndex((prev) => (prev + 1) % publication.images.length);
   };
-
-  const handleCardPrevImage = (certIndex, e) => {
-    e.stopPropagation();
-    const cert = certificates[certIndex];
-    setCardImageIndex(prev => ({
-      ...prev,
-      [certIndex]: ((prev[certIndex] || 0) - 1 + cert.images.length) % cert.images.length
-    }));
-  };
-
-  const handleModalNextImage = () => {
-    setModalImageIndex((prev) => (prev + 1) % selectedCert.images.length);
-  };
-
-  const handleModalPrevImage = () => {
-    setModalImageIndex((prev) => (prev - 1 + selectedCert.images.length) % selectedCert.images.length);
+  const prevImage = (e) => {
+    e?.stopPropagation();
+    setImageIndex((prev) => (prev - 1 + publication.images.length) % publication.images.length);
   };
 
   return (
-    <>
-      {/* Main Content */}
-      <div id="publications" className="bg-stone-900/50 px-4 md:px-10 py-16">
-        <div className="flex justify-center mb-4">
-          <p className="text-3xl font-bold text-gray-600">Publications</p>
-        </div>
-        <div className="w-[200px] h-1 border-b-4 border-yellow-500 mx-auto mb-16 rounded-3xl"></div>
+    <section id="publications" className="border-b border-[var(--line)]">
+      <div className="max-w-[104rem] mx-auto px-6 lg:px-10 py-20 lg:py-28">
+        <SectionHeading index="06" label="Publication">
+          Research is not done
+          <br />
+          <em>until it is written.</em>
+        </SectionHeading>
 
-        <div className="flex justify-center items-center">
-          <div className="w-full h-full max-w-6xl px-4">
-            {certificates.map((cert, index) => (
-              <div
-                key={index}
-                onClick={() => handleOpenModal(cert)}
-                className="flex flex-col md:min-h-[600px] items-center bg-white p-8 border border-gray-200 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700 md:flex-row cursor-pointer transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl mb-10"
-              >
-                {/* Image Section with Navigation */}
-                <div className="relative w-full md:w-96 mb-6 md:mb-0">
-                  <img 
-                    className="object-cover w-full rounded-lg h-full md:h-auto" 
-                    src={cert.images[cardImageIndex[index] || 0]} 
-                    alt={cert.title} 
-                  />
-                  
-                  {/* Navigation Buttons */}
-                  {cert.images.length > 1 && (
-                    <>
-                      <button
-                        onClick={(e) => handleCardPrevImage(index, e)}
-                        className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-yellow-400/90 hover:bg-yellow-300 shadow-md flex items-center justify-center text-black font-bold text-xl transition-colors"
-                      >
-                        &lt;
-                      </button>
-                      <button
-                        onClick={(e) => handleCardNextImage(index, e)}
-                        className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-yellow-400/90 hover:bg-yellow-300 shadow-md flex items-center justify-center text-black font-bold text-xl transition-colors"
-                      >
-                        &gt;
-                      </button>
-                      
-                      {/* Image Counter */}
-                      <div className="absolute bottom-2 right-2 bg-black/60 text-white px-3 py-1 rounded-full text-sm">
-                        {(cardImageIndex[index] || 0) + 1} / {cert.images.length}
-                      </div>
-                    </>
-                  )}
-                </div>
-                
-                <div className="flex flex-col justify-between md:p-8 leading-normal flex-1">
-                  <h5 className="mb-4 text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
-                    {cert.title}
-                  </h5>
-                  <p className="mb-8 text-lg text-gray-700 dark:text-gray-400">
-                    {cert.description}
-                  </p>
-                  <div>
-                    <button 
-                      type="button" 
-                      className="inline-flex items-center w-auto text-gray-700 dark:text-gray-400 bg-gray-200 dark:bg-gray-700 box-border border border-gray-300 dark:border-gray-600 hover:bg-gray-300 dark:hover:bg-gray-600 hover:text-gray-900 dark:hover:text-white focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 shadow-sm font-medium leading-5 rounded-lg text-base px-6 py-3 focus:outline-none"
-                    >
-                      Read more
-                      <svg className="w-5 h-5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 12H5m14 0-4 4m4-4-4-4" />
-                      </svg>
-                    </button>
-                  </div>
-                </div>
+        {/* Figure panel */}
+        <figure className="border border-[var(--line)] bg-[var(--panel)]">
+          <figcaption className="flex items-center justify-between px-4 lg:px-6 py-2.5 border-b border-[var(--line)]">
+            <span className="mono-label">{'//'} FIG_02 · Published Research · Peer-Reviewed</span>
+            <span className="mono-label hidden sm:flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[var(--ink)] inline-block"></span>
+              IJSDR · Feb 2026
+            </span>
+          </figcaption>
+
+          <div className="grid lg:grid-cols-[1fr_1.2fr]">
+            {/* Left — image carousel */}
+            <div className="p-6 lg:p-8 lg:border-r border-b lg:border-b-0 border-[var(--line)]">
+              <div className="relative border border-[var(--line)] bg-[var(--panel-2)]">
+                <img
+                  src={publication.images[imageIndex]}
+                  alt={publication.title}
+                  className="w-full object-cover"
+                />
+                <button
+                  onClick={prevImage}
+                  className="absolute left-2 top-1/2 -translate-y-1/2 font-mono-ed text-xs bg-[var(--paper)] border border-[var(--line-strong)] text-[var(--ink)] px-2.5 py-1.5 hover:bg-[var(--ink)] hover:text-[var(--paper)] transition-colors"
+                >
+                  ←
+                </button>
+                <button
+                  onClick={nextImage}
+                  className="absolute right-2 top-1/2 -translate-y-1/2 font-mono-ed text-xs bg-[var(--paper)] border border-[var(--line-strong)] text-[var(--ink)] px-2.5 py-1.5 hover:bg-[var(--ink)] hover:text-[var(--paper)] transition-colors"
+                >
+                  →
+                </button>
+                <span className="absolute bottom-2 right-2 mono-label bg-[var(--paper)] border border-[var(--line)] px-2 py-1">
+                  {imageIndex + 1} / {publication.images.length}
+                </span>
               </div>
-            ))}
+
+              {/* Stats */}
+              <div className="grid grid-cols-3 gap-4 mt-8">
+                {stats.map(([n, l]) => (
+                  <div key={l}>
+                    <p className="font-display text-3xl lg:text-4xl text-[var(--ink)]">{n}</p>
+                    <p className="mono-label mt-1">{l}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Right — details */}
+            <div className="p-6 lg:p-8">
+              <p className="mono-label mb-4">{publication.journal}</p>
+              <h3 className="font-display text-2xl lg:text-3xl leading-tight text-[var(--ink)] mb-3">
+                {publication.title}
+              </h3>
+              <p className="mono-label mb-6">{publication.volume}</p>
+              <p className="font-mono-ed text-[13px] leading-relaxed text-[var(--ink-dim)] mb-8">
+                {publication.description}
+              </p>
+
+              <div className="flex flex-wrap gap-3 mb-6">
+                <a
+                  href={publication.paperLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="ed-btn ed-btn--solid"
+                >
+                  Read full paper <span>↗</span>
+                </a>
+                <button onClick={openModal} className="ed-btn">
+                  Abstract <span>→</span>
+                </button>
+              </div>
+              <div className="flex flex-wrap gap-x-6 gap-y-2">
+                <a
+                  href={publication.certLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mono-label hover:text-[var(--ink)] transition-colors underline underline-offset-4"
+                >
+                  Certificate ↗
+                </a>
+                <a
+                  href={publication.confirmationLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mono-label hover:text-[var(--ink)] transition-colors underline underline-offset-4"
+                >
+                  Confirmation letter ↗
+                </a>
+              </div>
+            </div>
           </div>
-        </div>
+        </figure>
       </div>
 
-      {/* Modal Overlay */}
-      {showModal && selectedCert && (
+      {/* Abstract modal */}
+      {showModal && (
         <div
-          className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm transition-opacity"
-          onClick={handleCloseModal}
-        ></div>
-      )}
-
-      {/* Modal Content */}
-      {showModal && selectedCert && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4"
-          onClick={handleCloseModal}
+          onClick={closeModal}
+          className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4"
         >
           <div
-            className="relative bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-xl max-w-7xl h-full max-h-7xl w-full p-6 overflow-auto z-50 flex flex-col md:flex-row"
             onClick={(e) => e.stopPropagation()}
+            className="bg-[var(--paper)] border border-[var(--line-strong)] max-w-3xl w-full max-h-[90vh] overflow-auto"
           >
-            {/* Close Button */}
-            <button
-              onClick={handleCloseModal}
-              className="absolute top-0 right-0 w-8 h-8 rounded-full bg-yellow-400 hover:bg-yellow-300 shadow-md flex items-center justify-center text-black font-bold text-xl transition-colors z-10"
-              title="Close"
-            >
-              &times;
-            </button>
-
-            {/* Image Section with Navigation */}
-            <div className="relative w-full md:w-auto mb-4 md:mb-0 md:mr-6">
-              <img
-                src={selectedCert.images[modalImageIndex]}
-                alt={selectedCert.title}
-                className="object-cover w-full md:max-w-[600px] rounded-lg h-64 md:h-auto"
-              />
-              
-              {/* Navigation Buttons */}
-              {selectedCert.images.length > 1 && (
-                <>
-                  <button
-                    onClick={handleModalPrevImage}
-                    className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-yellow-400/90 hover:bg-yellow-300 shadow-md flex items-center justify-center text-black font-bold text-xl transition-colors"
-                  >
-                    &lt;
-                  </button>
-                  <button
-                    onClick={handleModalNextImage}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-yellow-400/90 hover:bg-yellow-300 shadow-md flex items-center justify-center text-black font-bold text-xl transition-colors"
-                  >
-                    &gt;
-                  </button>
-                  
-                  {/* Image Counter */}
-                  <div className="absolute bottom-2 right-2 bg-black/60 text-white px-3 py-1 rounded-full text-sm">
-                    {modalImageIndex + 1} / {selectedCert.images.length}
-                  </div>
-                </>
-              )}
+            <div className="flex items-center justify-between px-6 py-3 border-b border-[var(--line)] sticky top-0 bg-[var(--paper)]">
+              <span className="mono-label">{'//'} Abstract · IJSDR2602037</span>
+              <button
+                onClick={closeModal}
+                className="font-mono-ed text-xs text-[var(--ink-dim)] hover:text-[var(--ink)] transition-colors"
+              >
+                [ CLOSE ✕ ]
+              </button>
             </div>
-
-            {/* Content Section */}
-            <div className="flex flex-col justify-between leading-normal flex-1">
-              <div>
-                <h2 className="mb-4 text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
-                  {selectedCert.title}
-                </h2>
-                <p className="mb-4 text-lg text-gray-700 dark:text-gray-300">
-                  {selectedCert.description}
-                </p>
-                <p className="mb-6 text-base text-gray-600 dark:text-gray-400">
-                  {selectedCert.moreDescription}
-                </p>
-              </div>
-
-              {/* Action Button */}
-              <div className="flex flex-col gap-4">
-              <a
-                  href={selectedCert.paperLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center w-auto text-gray-700 dark:text-gray-400 bg-gray-200 dark:bg-gray-700 box-border border border-gray-300 dark:border-gray-600 hover:bg-gray-300 dark:hover:bg-gray-600 hover:text-gray-900 dark:hover:text-white focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 shadow-sm font-medium leading-5 rounded-lg text-base px-6 py-3 focus:outline-none"
-                >
-                  Read Full Paper
-                  <svg className="w-5 h-5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 12H5m14 0-4 4m4-4-4-4" />
-                  </svg>
-                </a>
-                <a
-                    href={selectedCert.certLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center w-auto text-gray-700 dark:text-gray-400 bg-gray-200 dark:bg-gray-700 box-border border border-gray-300 dark:border-gray-600 hover:bg-gray-300 dark:hover:bg-gray-600 hover:text-gray-900 dark:hover:text-white focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 shadow-sm font-medium leading-5 rounded-lg text-base px-6 py-3 focus:outline-none"
-                  >
-                    View Full Certificate
-                    <svg className="w-5 h-5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                      <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 12H5m14 0-4 4m4-4-4-4" />
-                    </svg>
-                  </a>
-                <a
-                  href={selectedCert.confirmationLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className=" mb-10 inline-flex items-center w-auto text-gray-700 dark:text-gray-400 bg-gray-200 dark:bg-gray-700 box-border border border-gray-300 dark:border-gray-600 hover:bg-gray-300 dark:hover:bg-gray-600 hover:text-gray-900 dark:hover:text-white focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 shadow-sm font-medium leading-5 rounded-lg text-base px-6 py-3 focus:outline-none"
-                >
-                  View Confirmation Letter
-                  <svg className="w-5 h-5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 12H5m14 0-4 4m4-4-4-4" />
-                  </svg>
-                </a>
-              </div>
+            <div className="p-6 lg:p-10">
+              <h2 className="font-display text-3xl leading-tight text-[var(--ink)] mb-6">
+                {publication.title}
+              </h2>
+              <p className="font-mono-ed text-[13px] leading-relaxed text-[var(--ink-dim)] whitespace-pre-line">
+                {publication.moreDescription}
+              </p>
             </div>
           </div>
         </div>
       )}
-    </>
+    </section>
   );
 }
 

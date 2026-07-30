@@ -139,11 +139,11 @@ const Bio = () => {
           <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
             {[
               {
-                no: '01', tag: 'The School',
-                title: 'SSLC',
-                sub: 'SHRI KALIKA BHAVANI EM HIGH SCHOOL · KANSUR',
-                body: 'Completed 8th to 10th grade with distinction in Science and Mathematics. Scored 94% in SSLC examinations.',
-                meta: '2018 – 2020', status: '94% · Completed',
+                no: '01', tag: 'The Degree',
+                title: 'B.E. Computer Science and Engineering',
+                sub: 'SAMBHRAM INSTITUTE OF TECHNOLOGY · VTU · BANGALORE',
+                body: 'Pursuing a Bachelor of Engineering in Computer Science with a CGPA of 9.1/10. Specialising in data structures, algorithms, machine learning, and cloud computing.',
+                meta: '2022 – 2026', status: '9.1 CGPA · Ongoing',
               },
               {
                 no: '02', tag: 'The Stream',
@@ -153,11 +153,11 @@ const Bio = () => {
                 meta: '2020 – 2022', status: '88% · Completed',
               },
               {
-                no: '03', tag: 'The Degree',
-                title: 'B.E. Computer Science and Engineering',
-                sub: 'SAMBHRAM INSTITUTE OF TECHNOLOGY · VTU · BANGALORE',
-                body: 'Pursuing a Bachelor of Engineering in Computer Science with a CGPA of 9.1/10. Specialising in data structures, algorithms, machine learning, and cloud computing.',
-                meta: '2022 – 2026', status: '9.1 CGPA · Ongoing',
+                no: '03', tag: 'The School',
+                title: 'SSLC',
+                sub: 'SHRI KALIKA BHAVANI EM HIGH SCHOOL · KANSUR',
+                body: 'Completed 8th to 10th grade with distinction in Science and Mathematics. Scored 94% in SSLC examinations.',
+                meta: '2018 – 2020', status: '94% · Completed',
               },
             ].map((e) => (
               <article

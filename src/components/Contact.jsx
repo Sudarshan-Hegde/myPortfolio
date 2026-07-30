@@ -46,14 +46,23 @@ function Contact() {
 
             <dl className="space-y-4 mb-10">
               {[
-                ['Email', 'sudohegde@gmail.com', 'mailto:sudohegde@gmail.com'],
-                ['GitHub', 'Sudarshan-Hegde', 'https://github.com/Sudarshan-Hegde'],
-                ['LinkedIn', 'sudarshan-hegde', 'https://www.linkedin.com/in/sudohegde/'],
-                ['Reddit', 'Sudarshan_Hegde_2004', 'http://reddit.com/user/_-SUPERN0VA-_/'],
-                ['Instagram', 'sudarshan.hegde.2004', 'https://www.instagram.com/sudohegde/'],
-              ].map(([k, v, href]) => (
-                <div key={k} className="grid grid-cols-[110px_1fr] gap-4 items-baseline">
-                  <dt className="mono-label">— {k}</dt>
+                ['Email', 'sudohegde@gmail.com', 'mailto:sudohegde@gmail.com', 'email.png'],
+                ['GitHub', 'Sudarshan-Hegde', 'https://github.com/Sudarshan-Hegde', 'github.png'],
+                ['Codeberg', 'Sudarshan-Hegde', 'https://codeberg.org/Sudarshan-Hegde', 'codeberg.png'],
+                ['LinkedIn', 'sudarshan-hegde', 'https://www.linkedin.com/in/sudohegde/', 'linkedin.png'],
+                ['Reddit', 'Sudarshan_Hegde_2004', 'http://reddit.com/user/_-SUPERN0VA-_/', 'reddit.png'],
+                ['Instagram', 'sudarshan.hegde.2004', 'https://www.instagram.com/sudohegde/', 'instagram.jpg'],
+              ].map(([k, v, href, logo]) => (
+                <div key={k} className="grid grid-cols-[130px_1fr] gap-4 items-center">
+                  <dt className="mono-label flex items-center gap-2.5">
+                    <img
+                      src={`${import.meta.env.BASE_URL}${logo}`}
+                      alt=""
+                      aria-hidden="true"
+                      className="w-4 h-4 object-contain flex-shrink-0"
+                    />
+                    {k}
+                  </dt>
                   <dd>
                     <a
                       href={href}
